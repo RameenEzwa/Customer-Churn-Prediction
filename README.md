@@ -33,7 +33,6 @@ https://www.kaggle.com/datasets/blastchar/telco-customer-churn
 - preprocessing.ipynb
 - Report.pdf
 - Dataset
-# Customer Churn Prediction
 
 ## Project Overview
 
