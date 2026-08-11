@@ -15,9 +15,21 @@ st.write("Enter customer details to predict whether the customer is likely to ch
 #Numerical Inputs
 tenure = st.number_input("Tenure (Months)", min_value=0, max_value=100, value=12)
 
-MonthlyCharges = st.number_input("Monthly Charges", min_value=0.0, value=50.0)
+MonthlyCharges = st.number_input(
+    "Monthly Charges",
+    min_value=0.0,
+    value=50.0,
+    step=0.01,
+    format="%.2f"
+)
 
-TotalCharges = st.number_input("Total Charges", min_value=0.0, value=500.0)
+TotalCharges = st.number_input(
+    "Total Charges",
+    min_value=0.0,
+    value=500.0,
+    step=0.01,
+    format="%.2f"
+)
 
 # Categorical Inputs
 gender = st.selectbox("Gender", ["Female", "Male"])
