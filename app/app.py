@@ -5,32 +5,32 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import streamlit as st
 from src.predict import predict_churn
-import streamlit as st
-from src.predict import predict_churn
 
 st.title("Customer Churn Prediction")
 
 st.write("Enter customer details to predict whether the customer is likely to churn.")
 
+with st.expander("📊 About the Machine Learning Model"):
+    st.write("**Algorithm:** Logistic Regression")
+    st.write("**Task:** Customer Churn Prediction")
+    
+    st.write("**Model Performance:**")
+    st.write("- Accuracy: 80.06%")
+    st.write("- Precision: 64.76%")
+    st.write("- Recall: 54.55%")
+    st.write("- F1 Score: 59.22%")
+    
+    st.write("**Prediction:**")
+    st.write("- 0 → Customer is not likely to churn")
+    st.write("- 1 → Customer is likely to churn")
+    
 #Numerical Inputs
 tenure = st.number_input("Tenure (Months)", min_value=0, max_value=100, value=12)
 
-MonthlyCharges = st.number_input(
-    "Monthly Charges",
-    min_value=0.0,
-    value=50.0,
-    step=0.01,
-    format="%.2f"
-)
+MonthlyCharges = st.number_input("Monthly Charges", min_value=0.0, value=50.0)
 
-TotalCharges = st.number_input(
-    "Total Charges",
-    min_value=0.0,
-    value=500.0,
-    step=0.01,
-    format="%.2f"
-)
-
+TotalCharges = st.number_input("Total Charges", min_value=0.0, value=500.0)
+                               
 # Categorical Inputs
 gender = st.selectbox("Gender", ["Female", "Male"])
 
@@ -127,9 +127,9 @@ if st.button("Predict Churn"):
 
     result = predict_churn(customer_data)
 
-    if "likely" in result.lower():
-        st.error("⚠️ Prediction: Customer is likely to churn.")
-        st.warning("Recommendation: Offer discounts or loyalty plans to retain the customer.")
-    else:
+    if "not likely" in result.lower():
         st.success("✅ Prediction: Customer is not likely to churn.")
         st.info("The customer is expected to remain with the company.")
+    else:
+        st.error("⚠️ Prediction: Customer is likely to churn.")
+        st.warning("Recommendation: Offer discounts or loyalty plans to retain the customer.")
